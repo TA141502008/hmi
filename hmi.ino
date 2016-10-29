@@ -1,39 +1,30 @@
 /******************************************************************************
 ===============================================================================
-Project Name   : Experiment
-                 Prototipe of Final Project: Human Machine Interface (HMI)
-Revision       : 0.4
+Project Name   : Monitoring System of Pond Water Quality on Vaname Shrimp Pond:
+                 Human Machine Interface (HMI) Module
+Revision       : 0.5
 Date Created   : August 27, 2015
-Date Revised   : December 7, 2015
+Date Revised   : February 12, 2016
 Author         : Baharuddin Aziz
-Author Mail    : mail@baha.web.id
+Author Mail    : baha.bdg@gmail.com
 Company        : Department of Electrical Engineering
                  School of Electrical Engineering and Informatics
                  Bandung Institute of Technology (ITB)
 Summary        : 1. Initialize all component.
-                 2. Do counting every second, reset every 3600 seconds.M
-				 3. Display date and clock on LCD 16x4.
-				 4. Remove old file in SD card, then create file which name
-				    is YYYYMMDD.TXT of the day.
-				 5. Receive sensor data from RMP module.
-				 6. Turn ON alarm when 1 of sensor parameter is NOT normal.
-				 7. Display the sensor data on LCD 16x4.
-				 8. Save the sensor data in SD card.
+                 2. Do counting every second, reset every 3600 seconds.
+                 3. Display date and clock on LCD 16x4.
+                 4. Remove old file in SD card, then create file which name
+                    is YYYYMMDD.TXT of the day.
+                 5. Receive sensor data from RMP module.
+                 6. Turn ON alarm when 1 of sensor parameter is NOT normal.
+                 7. Display the sensor data on LCD 16x4.
+                 8. Save the sensor data in SD card.
 ===============================================================================
                                 Additional Info
 -------------------------------------------------------------------------------
 > Microcontroller Board :
    Arduino Mega 2560 R3 (IDE used is Arduino 1.6.4)
 > Pin Configuration (see PinConfiguration_v20151107.pdf) :
-   Keypad 4x4 :
-     Row 0    = pin 29
-     Row 1    = pin 28
-     Row 2    = pin 27
-     Row 3    = pin 26
-     Column 0 = pin 25
-     Column 1 = pin 24
-     Column 2 = pin 23
-     Column 3 = pin 22
    LCD 16x4 :
      1  (VSS)  = -
      2  (VDD)  = 5V
@@ -91,8 +82,6 @@ Summary        : 1. Initialize all component.
 	 Turbidity_Red     = pin 40
 	 Salinity_Green    = pin 42
 	 Salinity_Red      = pin 44
-	 Depth_Green       = pin 46
-	 Depth_Red         = pin 48
 	 Ground            = GND
    Relay :
      VCC    = 5V
@@ -104,79 +93,86 @@ Summary        : 1. Initialize all component.
      5VT (TX) = pin 10
 	 GND      = GND
 > Thanks to :
-   1. Alexander Brevig (alexanderbrevig@gmail.com) for providing :
-       - CustomKeypad source code example
-   2. David A. Mellis (Arduino Team) for providing :
+   1. David A. Mellis (Arduino Team) for providing :
        - LiquidCrystal source code example
        - SD Card (ReadWrite) code example
        - SD Card (Files code) example
-   3. Tom Igoe (Arduino Team) for providing :
+   2. Tom Igoe (Arduino Team) for providing :
        - LiquidCrystal source code example
        - SD Card (Modified) code example
-   4. Limo Fried for providing :
+   3. Limo Fried for providing :
        - LiquidCrystal source code example
        - CardInfo code example
-   5. Michael Margolis for providing :
+   4. Michael Margolis for providing :
        - SetTime example code
        - ReadTest example code
-   6. Mohannad Rawashdeh (http://www.genotronex.com/) for providing :
+   5. Mohannad Rawashdeh (http://www.genotronex.com/) for providing :
 	   - Simple Rx source code example
 ===============================================================================
                                   Changelog
 -------------------------------------------------------------------------------
-v1.0  -
-v1.1  1. Add a RTC module.
-      2. Change the display of LCD. The display include:
-         + Title and counter (in seconds)
-         + Date [DD-MM-YYYY]
-         + Clock [HH:MM:SS]
-         + Keypress (for checking the keypad module)
-v1.2  1. Add a SD Card module.
-      2. Edit SETUP and MAIN LOOP.
-      3. Add some procedure that can:
-	     a. Save text in 'Ketik' label on LCD 16x4 to file every 2 second.
-           File name: YYYYMMDD.TXT
-         b. Delete saved file every year.
-            Example: File 20140909.TXT is deleted when file 20150909.TXT
-		             will be writed.
-            So, every file has only duration one year.
-v1.3  1. Create a title in file.
-      2. Change the content on LCD 16x4.
-      3. (not complete documentation)
-v1.4  1. Reassign the rows in declaration section of source code
-      2. Complete the source code with comments
-	  3. Adding new procedure:
-	     a. procedure_LED_SystemStatus_OpenFile_Error()
-		 b. procedure_Relay_SETUP()
-		 c. procedure_Relay_CH2_Alarm_ON()
-		 d. procedure_ConditionCheck_Flag_ALL_temp()
-		 e. procedure_ConditionCheck_Flag_Comparation()
-		 f. procedure_GSM_SETUP()
-		 g. procedure_GSM_SendMessage()
-	  4. Editing some procedure:
-         a. procedure_LED_SystemStatus_SETUP_All()
-		 b. procedure_SensorData_ConditionCheck()
-	  5. Editing SETUP section:
-	     a. adding procedure_LED_SystemStatus_SETUP_All();
-		 b. adding procedure_ConditionCheck_Flag_ALL_temp();
-		 c. adding procedure_GSM_SETUP();
-      6. Editing MAIN LOOP section:
-	     a. adding procedure_ConditionCheck_Flag_Comparation(
-		             ConditionCheck_Flag_ALL,
-					 ConditionCheck_Flag_ALL_temp);
-		 b. adding procedure_Relay_CH2_Alarm_ON();
-		 c. adding procedure_GSM_SendMessage();
-		 d. rearrange RELAY and GSM MODULE section to be last section
-      7. Editing PROCEDURE DETAIL section:
-	     a. Re-arrange the procedure
-		 b. Add title depend on each category
-	  8. Adding text that will be displayed on Serial Monitor.
-	     The text is used for tracing the running process of program.
+Revision 0.0
+  (no change, first release)
+Revision 0.1
+  1. Add a RTC module.
+  2. Change the display of LCD. The display include:
+      + Title and counter (in seconds)
+      + Date [DD-MM-YYYY]
+      + Clock [HH:MM:SS]
+      + Keypress (for checking the keypad module)
+Revision 0.2 
+  1. Add a SD Card module.
+  2. Edit SETUP and MAIN LOOP.
+  3. Add some procedure that can:
+	a. Save text in 'Ketik' label on LCD 16x4 to file every 2 second.
+       File name: YYYYMMDD.TXT
+    b. Delete saved file every year.
+       Example: File 20140909.TXT is deleted when file 20150909.TXT
+                will be writed.
+       So, every file has only duration one year.
+Revision 0.3
+  1. Create a title in file.
+  2. Change the content on LCD 16x4.
+  3. (not complete documentation)
+Revision 0.4
+  1. Reassign the rows in declaration section of source code
+  2. Complete the source code with comments
+  3. Adding new procedure:
+      a. procedure_LED_SystemStatus_OpenFile_Error()
+      b. procedure_Relay_SETUP()
+      c. procedure_Relay_CH2_Alarm_ON()
+      d. procedure_ConditionCheck_Flag_ALL_temp()
+      e. procedure_ConditionCheck_Flag_Comparation()
+      f. procedure_GSM_SETUP()
+      g. procedure_GSM_SendMessage()
+  4. Editing some procedure:
+      a. procedure_LED_SystemStatus_SETUP_All()
+      b. procedure_SensorData_ConditionCheck()
+  5. Editing SETUP section:
+      a. adding procedure_LED_SystemStatus_SETUP_All();
+      b. adding procedure_ConditionCheck_Flag_ALL_temp();
+      c. adding procedure_GSM_SETUP();
+  6. Editing MAIN LOOP section:
+      a. adding procedure_ConditionCheck_Flag_Comparation(
+		          ConditionCheck_Flag_ALL,
+				  ConditionCheck_Flag_ALL_temp);
+      b. adding procedure_Relay_CH2_Alarm_ON();
+      c. adding procedure_GSM_SendMessage();
+      d. rearrange RELAY and GSM MODULE section to be last section
+  7. Editing PROCEDURE DETAIL section:
+      a. Re-arrange the procedure
+      b. Add title depend on each category
+  8. Adding text that will be displayed on Serial Monitor.
+     The text is used for tracing the running process of program.
+Revision 0.5
+  1. Remove all codes about Keypad
+  2. Remove all codes about Depth parameter 
+  3. Adding new procedure:
+      a. procedure_SDCard_NewFile_NewDay()
 ******************************************************************************/
 
 /*=======================( IMPORT NEEDED LIBRARY )===========================*/
 #include <LiquidCrystal.h>  // include the LCD library code
-#include <Keypad.h>         // include the 4x4 matrix keypad library code
 #include <Wire.h>
 #include <Time.h>           // include time library code
 #include <DS1307RTC.h>      // include the DS1307 RTC library code
@@ -204,51 +200,28 @@ const int row_clock = row_date;  // row that used to display the clock
 const int first_date_cursor = 0;                        // first column for date cursor
 const int first_clock_cursor = first_date_cursor + 11;  // first column for clock cursor
 // sensor data
-const int row_Sensor_Temperature = 2;  // row that used to display temperature value
-const int row_Sensor_pH = 3;           // row that used to display pH value
-const int row_Sensor_DO = 2;           // row that used to display DO value
-const int row_Sensor_Turbidity = 3;    // row that used to display turbidity value
-const int row_Sensor_Salinity = 2;     // row that used to display salinity value
-const int row_Sensor_Depth = 3;        // row that used to display depth value
+const int row_Sensor_Temperature = 2;    // row that used to display temperature value
+const int row_Sensor_pH = 3;             // row that used to display pH value
+const int row_Sensor_DO = 2;             // row that used to display DO value
+const int row_Sensor_Turbidity = 3;      // row that used to display turbidity value
+const int row_Sensor_Salinity = 2;       // row that used to display salinity value
+const int row_Sensor_BelowSalinity = 3;  // row that used to display below salinity value
 const int column_Sensor_Temperature_title = 0;  // column that used to display temperature title
 const int column_Sensor_pH_title = 0;           // column that used to display pH title
 const int column_Sensor_DO_title = 0;           // column that used to display DO title
 const int column_Sensor_Turbidity_title = 0;    // column that used to display turbidity title
 const int column_Sensor_Salinity_title = 0;     // column that used to display salinity title
-const int column_Sensor_Depth_title = 0;        // column that used to display depth title
+const int column_Sensor_BelowSalinity = 0;      // column that used to display below salinity value
 const int column_Sensor_Temperature_value = column_Sensor_Temperature_title + 8;  // column that used to display temperature value
 const int column_Sensor_pH_value = column_Sensor_pH_title + 8;                    // column that used to display pH value
 const int column_Sensor_DO_value = column_Sensor_DO_title + 8;                    // column that used to display DO value
 const int column_Sensor_Turbidity_value = column_Sensor_Turbidity_title + 8;      // column that used to display turbidity value
 const int column_Sensor_Salinity_value = column_Sensor_Salinity_title + 8;        // column that used to display salinity value
-const int column_Sensor_Depth_value = column_Sensor_Depth_title + 8;              // column that used to display depth value
-// keypress
-const int row_keypress = 1;                                    // row that used for keypress
-const int first_keypress = 6;                                  // first column for keypress cursor
-const int length_of_LCD_keypress_value = 16 - first_keypress;  // length of LCD keypress value
 
 /* RTC */
 // LED (status)
 const int RTC_IndicatorLED_Green_PinNumber = 8;   // pin number of indicator LED (Green) of RTC in Arduino
 const int RTC_IndicatorLED_Red_PinNumber   = 14;  // pin number of indicator LED (Red) of RTC in Arduino
-
-/* KEYPAD */
-// constants for rows and columns on the keypad
-const byte numRows = 4;  // number of rows on the keypad
-const byte numCols = 4;  // number of columns on the keypad
-// keymap defines the key pressed according to the row and columns just as appears on the keypad
-char keymap[numRows][numCols] =
-{
-  {'1', '2', '3', 'A'},
-  {'4', '5', '6', 'B'},
-  {'7', '8', '9', 'C'},
-  {'*', '0', '#', 'D'}
-};
-// code that shows the the keypad connections to the arduino terminals
-byte rowPins[numRows] = {29, 28, 27, 26};  // rows 0 to 3    --- row    0..3 = pin 29..26
-byte colPins[numCols] = {25, 24, 23, 22};  // columns 0 to 3 --- column 0..3 = pin 25..22
-// initializes an instance of the keypad class
-Keypad myKeypad = Keypad(makeKeymap(keymap), rowPins, colPins, numRows, numCols);
 
 /* SD Card Module */
 // pin number of ChipSelect (CS)
@@ -264,13 +237,12 @@ const int Rx_PinNumber = 6; // pin number of Receiver 433 MHz in Arduino
 // LED (status)
 const int Rx_IndicatorLED_Green_PinNumber = 7; // pin number of indicator LED (Green) of Rx in Arduino
 // data length of variable that used to receive data from RMP module
-const int Rx_SensorData_ALL_Length          = 36;  // 6 x 6 length of data
+const int Rx_SensorData_ALL_Length          = 30;  // 5 x 6 length of data
 const int Rx_SensorData_Temperature_Length  = 6;   // 5 char for data, 1 char is empty for "end of data"
 const int Rx_SensorData_pH_Length           = 6;   // 5 char for data, 1 char is empty for "end of data"
 const int Rx_SensorData_DO_Length           = 6;   // 5 char for data, 1 char is empty for "end of data"
 const int Rx_SensorData_Turbidity_Length    = 6;   // 5 char for data, 1 char is empty for "end of data"
 const int Rx_SensorData_Salinity_Length     = 6;   // 5 char for data, 1 char is empty for "end of data"
-const int Rx_SensorData_Depth_Length        = 6;   // 5 char for data, 1 char is empty for "end of data"
 
 /* GSM Module */
 // pin configuration ALREADY on Library, so no need configuration in this section
@@ -291,8 +263,6 @@ const int LED_SensorData_Turbidity_Green    = 38;  // pin number of indicator LE
 const int LED_SensorData_Turbidity_Red      = 40;  // pin number of indicator LED (Red)   of turbidity status
 const int LED_SensorData_Salinity_Green     = 42;  // pin number of indicator LED (Green) of salinity status
 const int LED_SensorData_Salinity_Red       = 44;  // pin number of indicator LED (Red)   of salinity status
-const int LED_SensorData_Depth_Green        = 46;  // pin number of indicator LED (Green) of depth status
-const int LED_SensorData_Depth_Red          = 48;  // pin number of indicator LED (Red)   of depth status
 /*===========================================================================*/
 
 
@@ -300,14 +270,9 @@ const int LED_SensorData_Depth_Red          = 48;  // pin number of indicator LE
 /* General */
 int MainCounter;
 
-/* LCD and KEYPAD */
-// keypress
-char LCD_keypress_value[length_of_LCD_keypress_value];  // value of keypress
-int  LCD_keypress_value_index;                          // index of LCD_keypress_value
-int  LCD_i;                                             // counter of keypress
-int  LCD_j;                                             // dummy variable for display keypress counter in serial monitor
+/* LCD */
 // display of sensor data
-int LCD_SensorData_Display;                             // flag for changing display of sensor data
+int LCD_SensorData_Display;  // flag for changing display of sensor data
 
 /* RTC */
 // set up variables using the RTC utility library functions
@@ -322,13 +287,15 @@ Sd2Card   card;
 SdVolume  volume;
 SdFile    root;
 // variable for create, write, and delete file
-File myFile1, myFile2;
+File myFile1;
 // file name for data logging
 char SDCard_FileName[12];  // file name: YYYYMMDD.TXT
 // for make sure only one data will be written
 int SDCard_DataLogging_Write;  // flag for writting process to SD card
 // for marking the data that already received from RMP
 int SDCard_Marker;
+// for making new file for NEXT DAY
+int SDCard_NewFile_NewDay_FLAG; // flag for creating new file on NEXT DAY
 
 /* RECEIVER 433 MHz */
 // variable for store value of sensor data from RMP module
@@ -337,7 +304,6 @@ String Rx_SensorData_pH;           // only store pH value from RMP module
 String Rx_SensorData_DO;           // only store DO value from RMP module
 String Rx_SensorData_Turbidity;    // only store turbidity value from RMP module
 String Rx_SensorData_Salinity;     // only store salinity value from RMP module
-String Rx_SensorData_Depth;        // only store the depths of the pond value from RMP module
 
 /* GSM Module */
 SMSGSM  sms;                  //
@@ -353,31 +319,34 @@ float Value_SensorData_pH;           // value of pH
 float Value_SensorData_DO;           // value of DO
 float Value_SensorData_Turbidity;    // value of turbidity
 float Value_SensorData_Salinity;     // value of salinity
-float Value_SensorData_Depth;        // value of depth
 // value of converted string data (from RMP) to CHAR format
 char Char_SensorData_Temperature[6];  // char of temperature value
 char Char_SensorData_pH[6];           // char of pH value
 char Char_SensorData_DO[6];           // char of DO value
 char Char_SensorData_Turbidity[6];    // char of turbidity value
 char Char_SensorData_Salinity[6];     // char of salinity value
-char Char_SensorData_Depth[6];        // char of depth value
-// status of Condition Check --- OK when NORMAL, xx when NOT NORMAL
+// status of Condition Check
 // this status will be displayed on LCD
+// description :
+//   OK when NORMAL
+//   -- when the value below normal 
+//   ++ when the value over normal
 String ConditionCheck_Status_Temperature;  // status of temperature
 String ConditionCheck_Status_pH;           // status of pH
 String ConditionCheck_Status_DO;           // status of DO
 String ConditionCheck_Status_Turbidity;    // status of turbidity
 String ConditionCheck_Status_Salinity;     // status of salinity
-String ConditionCheck_Status_Depth;        // status of depth
-// flag for ERROR Condition Check --- 1 when ERROR, 0 when NOT error
-char ConditionCheck_Flag_ALL[7];               // flag for ALL parameters
-char ConditionCheck_Flag_ALL_temp[7];          // flag for ALL parameters
+// flag for ERROR Condition Check 
+// description :
+//   1 when ERROR
+//   0 when NOT error
+char ConditionCheck_Flag_ALL[6];               // flag for ALL parameters
+char ConditionCheck_Flag_ALL_temp[6];          // flag for ALL parameters
 int  ConditionCheck_Flag_Temperature;          // flag for temperature
 int  ConditionCheck_Flag_pH;                   // flag for pH
 int  ConditionCheck_Flag_DO;                   // flag for DO
 int  ConditionCheck_Flag_Turbidity;            // flag for turbidity
 int  ConditionCheck_Flag_Salinity;             // flag for salinity
-int  ConditionCheck_Flag_Depth;                // flag for depth
 boolean ConditionCheck_Flag_Comparation;       // comparation value of ALL flag
 boolean ConditionCheck_Flag_Comparation_temp;  // temp for comparation value of ALL flag
 /*===========================================================================*/
@@ -395,19 +364,15 @@ void setup()
   MainCounter = 0;                                  // initialize the main counter
   // Receiver 433 MHz
   procedure_Rx_SensorData_Initialization();         // initialize the value of sensor data from RMP module
-  // LCD 16x4 --- display of sensor data
+  // LCD 16x4 (display of sensor data)
   LCD_SensorData_Display   = 0;                     // flag for changing display of sensor data
-  // LCD 16x4 --- keypress
-  // procedure_Clear_LCD_keypress_value();             // reset or fill blank to LCD_keypress_value (replace with '_')
-  // LCD_keypress_value_index = 1;                     // initialize the index (pointer) of LCD_keypress_value
-  // LCD_i = first_keypress;                           // initialize the counter of keypress
-  // LCD_j = 1;                                        // initialize the dummy variable for display keypress counter in serial monitor
   // RTC
   RTC_ThisDay = tm.Day;                             // initialize the variable for checking and removing old file
   RTC_NextDay = RTC_ThisDay + 1;                    // initialize the variable for checking and removing old file
   // Relay
   procedure_ConditionCheck_Flag_ALL_temp();         // initialize the flag variable for checking condition
   // SD Card
+  SDCard_NewFile_NewDay_FLAG = 1;                   // flag for creating new file for NEXT DAY
   SDCard_DataLogging_Write = 0;                     // flag for writting process to SD card
 
   /* LED */
@@ -429,8 +394,8 @@ void setup()
   /* GSM Module */
   procedure_LCD_SETUP_GSM_start();                  //
   procedure_GSM_SETUP();
-  delay(3000);                                       //
-  procedure_GSM_SendMessage_Initialize();                 //
+  delay(3000);                                      //
+  procedure_GSM_SendMessage_Initialize();           //
   procedure_LCD_SETUP_GSM_end();                    //
 
   /* LCD 16x4 */
@@ -438,7 +403,6 @@ void setup()
   procedure_LCD_SETUP_DateClock();                  // initialize the display of separator for date and clock
   procedure_LCD_SETUP_SystemStatus();               // initialize the display of text "Status:"
   procedure_LCD_SETUP_SensorData();                 // initialize the display of text "Suhu  =" and "pH    ="
-  // procedure_LCD_SETUP_KeypressLabel();              // ...
 
   /* SD CARD MODULE */
   procedure_SDCard_Initialization();                // check the presence of SD card
@@ -468,15 +432,22 @@ void loop()
     // RTC_NextDay += 1;                                           // add value of RTC_NextDay variable
   // }
 
-  if ((tm.Hour == 0) && (tm.Minute == 0) && (tm.Second == 0))                               // when value of RTC_ThisDay variable equal with RTC_NextDay variable
+  if ((SDCard_NewFile_NewDay_FLAG == 1) &&
+      (tm.Hour == 18) &&
+      (tm.Minute == 59) &&
+	  (tm.Second == 40))                                        // when FLAG = 1 and time = 23:59:40
   {
-    procedure_SDCard_RemoveOldFile();                           // REMOVE file one year before
-    procedure_SDCard_NewFile();                                 // create new file that named with YYYYMMDD of today
-    RTC_NextDay += 1;                                           // add value of RTC_NextDay variable
+    procedure_SDCard_NewFile_NewDay();
+	SDCard_NewFile_NewDay_FLAG == 0;
   }
   
-  /* KEYPAD 4x4 */
-  // procedure_LCD_Keypress();
+  if ((SDCard_NewFile_NewDay_FLAG == 0) &&
+      (tm.Hour == 18) &&
+      (tm.Minute == 59) &&
+	  (tm.Second == 50))                                        // when FLAG = 1 and time = 23:59:50
+  {
+    SDCard_NewFile_NewDay_FLAG == 1;
+  }
 
   /* RECEIVER 433 MHz */
   procedure_Rx_ReceivingDataRMP();                              // receive data from RMP, then store it in variables
@@ -554,8 +525,6 @@ void procedure_LED_SystemStatus_SETUP_All()
   pinMode(LED_SensorData_Turbidity_Red    , OUTPUT);
   pinMode(LED_SensorData_Salinity_Green   , OUTPUT);
   pinMode(LED_SensorData_Salinity_Red     , OUTPUT);
-  pinMode(LED_SensorData_Depth_Green      , OUTPUT);
-  pinMode(LED_SensorData_Depth_Red        , OUTPUT);
   // assign pin value with 0
   digitalWrite(LED_SensorData_Temperature_Green, 0);
   digitalWrite(LED_SensorData_Temperature_Red  , 0);
@@ -567,8 +536,6 @@ void procedure_LED_SystemStatus_SETUP_All()
   digitalWrite(LED_SensorData_Turbidity_Red    , 0);
   digitalWrite(LED_SensorData_Salinity_Green   , 0);
   digitalWrite(LED_SensorData_Salinity_Red     , 0);
-  digitalWrite(LED_SensorData_Depth_Green      , 0);
-  digitalWrite(LED_SensorData_Depth_Red        , 0);
 
   /* SD CARD MODULE */
   // set pin as output
@@ -753,7 +720,6 @@ void procedure_Rx_SensorData_Initialization()
   Rx_SensorData_DO           = "     ";
   Rx_SensorData_Turbidity    = "     ";
   Rx_SensorData_Salinity     = "     ";
-  Rx_SensorData_Depth        = "     ";
 }
 
 void procedure_Rx_ReceivingDataRMP()
@@ -768,8 +734,6 @@ void procedure_Rx_ReceivingDataRMP()
 //              with data from RMP
 {
   Serial.println(">> procedure_Rx_ReceivingDataRMP()");
-
-
 
   uint8_t buf[VW_MAX_MESSAGE_LEN];
   uint8_t buflen = VW_MAX_MESSAGE_LEN;
@@ -830,16 +794,6 @@ void procedure_Rx_ReceivingDataRMP()
     }
     Serial.println();
 
-    /* sensor data of DEPTH */
-    Serial.print("Dalam = ");                           // serial monitor (Arduino IDE)
-    for (int i = 25; i <= 29; i++)
-    {
-      Serial.write(buf[i]);
-      Rx_SensorData_Depth[i - 25] = ' ';
-      Rx_SensorData_Depth[i - 25] = buf[i];
-    }
-    Serial.println();
-
     digitalWrite(Rx_IndicatorLED_Green_PinNumber, 0);  // turn OFF the green LED for Receiver 433 MHz
   }
   //  Serial.println("tidak ada koneksi");
@@ -857,9 +811,9 @@ void procedure_LCD_SETUP_GSM_start()
   lcd.setCursor(0, 0);            // column = 0, row = 0
   lcd.print("================");
   lcd.setCursor(0, 1);            // column = 0, row = 1
-  lcd.print("   Initialize   ");
+  lcd.print("  Inisialisasi  ");
   lcd.setCursor(0, 2);            // column = 0, row = 2
-  lcd.print(" the GSM Module ");
+  lcd.print("   GSM Module   ");
   lcd.setCursor(0, 3);            // column = 0, row = 3
   lcd.print("================");
 }
@@ -875,9 +829,9 @@ void procedure_LCD_SETUP_GSM_star_success()
   lcd.setCursor(0, 0);            // column = 0, row = 0
   lcd.print("================");
   lcd.setCursor(0, 1);            // column = 0, row = 1
-  lcd.print(" Initialization ");
+  lcd.print("  Inisialisasi  ");
   lcd.setCursor(0, 2);            // column = 0, row = 2
-  lcd.print("    SUCCESS     ");
+  lcd.print("    BERHASIL    ");
   lcd.setCursor(0, 3);            // column = 0, row = 3
   lcd.print("================");
 }
@@ -893,9 +847,9 @@ void procedure_LCD_SETUP_GSM_star_failed()
   lcd.setCursor(0, 0);            // column = 0, row = 0
   lcd.print("================");
   lcd.setCursor(0, 1);            // column = 0, row = 1
-  lcd.print(" Initialization ");
+  lcd.print("  Inisialisasi  ");
   lcd.setCursor(0, 2);            // column = 0, row = 2
-  lcd.print("     FAILED     ");
+  lcd.print("     GAGAL      ");
   lcd.setCursor(0, 3);            // column = 0, row = 3
   lcd.print("================");
 }
@@ -964,70 +918,6 @@ void procedure_LCD_SETUP_SensorData()
   lcd.print("pH    =");                                                    // display text "pH    =" on LCD
 }
 
-void procedure_LCD_SETUP_KeypressLabel() // temporarly NOT USED because DATA SENSOR testing
-// input   : ...
-// output  : ...
-// process : ...
-// NOTE	   : DO NOT DELETE this procedure!
-//           store this procedure in SETUP section
-{
-  Serial.println(">> procedure_LCD_SETUP_KeypressLabel()");
-
-  // print label to the LCD
-  // keypress label
-  lcd.setCursor(0, row_keypress);               // column 0, row = row_keypress
-  lcd.print("Ketik");                           // display text "Ketik" on LCD
-  lcd.setCursor(first_keypress, row_keypress);  // column = first_keypress, row = row_keypress
-  procedure_ClearScreen_keypress();             // clear the screen of keypress label
-}
-
-void procedure_LCD_Keypress() // temporarly NOT USED because DATA SENSOR testing
-// input   : ...
-// output  : ...
-// process : ...
-// NOTE	   : DO NOT DELETE this procedure!
-//           store this procedure in MAIN LOOP section
-{
-  Serial.println(">> procedure_LCD_Keypress()");
-
-  char keypressed = myKeypad.getKey();
-
-  /* KEYPAD */
-  // If key is pressed, this key is stored in 'keypressed' variable.
-  // If key is not equal to 'NO_KEY', then this key is printed out.
-  // If count = 17, then count is reset back to 0
-  // (this means no key is pressed during the whole keypad scan process).
-  if ((keypressed != NO_KEY) && (LCD_i <= 15))
-  {
-    // display the keypress on LCD
-    lcd.setCursor(LCD_i, row_keypress);                         // column = LCD_i, row = row_keypress
-    LCD_keypress_value[LCD_keypress_value_index] = keypressed;  // fill LCD_keypress_value with keypressed
-    lcd.print(LCD_keypress_value[LCD_keypress_value_index]);    // print LCD_keypress_value
-    LCD_keypress_value_index++;
-    LCD_i++;
-    LCD_j++;
-  }
-  else if ((keypressed != NO_KEY) && (LCD_i > 15))
-  {
-    // reset some variable
-    LCD_i = first_keypress;                                     // reset LCD_i back to first_keypress
-    LCD_keypress_value_index = 1;                               // reset the index back to 1
-    procedure_Clear_LCD_keypress_value();                       // reset or fill blank to LCD_keypress_value (replace with '_')
-
-    // clear-screen the keypress label on LCD
-    lcd.setCursor(LCD_i, row_keypress);                         // column LCD_i, row = row_keypress
-    procedure_ClearScreen_keypress();                           // clear the screen of keypress label
-
-    // display the keypress on LCD (same with before)
-    lcd.setCursor(LCD_i, row_keypress);                         // column = LCD_i, row = row_keypress
-    LCD_keypress_value[LCD_keypress_value_index] = keypressed;  // fill LCD_keypress_value with keypressed
-    lcd.print(LCD_keypress_value[LCD_keypress_value_index]);    // print LCD_keypress_value
-    LCD_keypress_value_index++;
-    LCD_i++;
-    LCD_j++;
-  }
-}
-
 void procedure_LCD_SensorData_Display()
 // input   : N/A
 // output  : 1. display text of each parameter
@@ -1089,47 +979,11 @@ void procedure_LCD_SensorData_Display()
     lcd.print(Rx_SensorData_Salinity);                                           // display value of salinity
     lcd.setCursor(column_Sensor_Salinity_value + 6, row_Sensor_Salinity);        // column = column_Sensor_Salinity_value + 7, row = row_Sensor_Salinity
     lcd.print(ConditionCheck_Status_Salinity);                                   // display status (normal or not) of salinity
-    // depth
-    lcd.setCursor(column_Sensor_Depth_title, row_Sensor_Depth);                  // column = column_Sensor_Depth_title, row = row_Sensor_Depth
-    lcd.print("Dalam =");                                                        // display text "Dalam =" on LCD
-    lcd.setCursor(column_Sensor_Depth_value, row_Sensor_Depth);                  // column = column_Sensor_Depth_value, row = row_Sensor_Depth
-    lcd.print(Rx_SensorData_Depth);                                              // display value of depth
-    lcd.setCursor(column_Sensor_Depth_value + 6, row_Sensor_Depth);              // column = column_Sensor_Depth_value + 7, row = row_Sensor_Depth
-    lcd.print(ConditionCheck_Status_Depth);                                      // display status (normal or not) of depth
-
+    // below salinity
+    lcd.setCursor(column_Sensor_BelowSalinity, row_Sensor_BelowSalinity);        // column = column_Sensor_BelowSalinity, row = row_Sensor_BelowSalinity
+    lcd.print("                ");                                               // display text "Keruh =" on LCD
+	
     LCD_SensorData_Display = 0 ;
-  }
-}
-
-void procedure_Clear_LCD_keypress_value()
-// input   : N/A
-// output  : LCD_keypress_value variable is filled with '_'
-// process : replace LCD_keypress_value variable with '_'
-{
-  Serial.println(">> procedure_Clear_LCD_keypress_value()");
-
-  for (int i = 1; i <= length_of_LCD_keypress_value; i++)
-  {
-    LCD_keypress_value[i] = '_';
-  }
-}
-
-void procedure_ClearScreen_keypress()
-// input   : N/A
-// output  : blank on LCD (keypress label)
-// process : replace text on LCD (keypress label) with '_'
-{
-  Serial.println(">> procedure_ClearScreen_keypress()");
-
-  char blank[length_of_LCD_keypress_value];
-
-  for (int i = 1; i <= length_of_LCD_keypress_value; i++)
-  {
-    blank[i] = '_';
-  }
-  for (int i = 1; i <= length_of_LCD_keypress_value; i++)
-  {
-    lcd.print(blank[i]);
   }
 }
 
@@ -1390,7 +1244,7 @@ void procedure_SDCard_NewFile()
 
     /* title */
     // title of the content of file
-    myFile1.println("YYYYMMDD_hhmmss_Suhu _pH   _DO   _Turb _Salnt_Depth_FLAG ");
+    myFile1.println("YYYYMMDD_hhmmss_Suhu _pH   _DO   _Turb _Salnt_FLAG ");
 
     // close the file
     myFile1.close();
@@ -1403,6 +1257,82 @@ void procedure_SDCard_NewFile()
     // if the file didn't open, print an error
     Serial.print("[NewFile] ERROR opening ");     // display on serial monitor (Arduino IDE)
     Serial.print(SDCard_FileName);
+    Serial.println("!");
+    procedure_LED_SystemStatus_OpenFile_Error();  // turn on the red LED for SD card
+  }
+}
+
+void procedure_SDCard_NewFile_NewDay()
+// input   : N/A
+// output  : 1. new file that named with YYYYMMDD of NEXT DAY is created
+//           2. there is 1 line of title in that file
+// process : 1. open YYYYMMDD.TXT file
+//           2. write the title in 1st line of that file
+{
+  Serial.println(">> procedure_SDCard_NewFile_NewDay()");
+
+  // local variable
+  int YYYY;
+  int MM;
+  int DD;
+  char FileName[12];
+
+  /* Define File Name */
+  // initializing
+  YYYY = tmYearToCalendar(tm.Year);               // year of today
+  MM = tm.Month;                                  // month of today
+  DD = tm.Day + 1;                                // date of NEXT DAY
+
+  // define the file name of OLD FILE
+  if ((MM < 10) && (DD < 10))                         // when (number of month < 10) AND (number of date) < 10
+  {
+    sprintf(FileName, "%d0%d0%d.TXT", YYYY, MM, DD);  // assign FileName variable with YYYYMMDD.TXT
+  }
+  else if ((MM < 10) && (DD >= 10))                   // when (number of month < 10) AND (number of date) < 10
+  {
+    sprintf(FileName, "%d0%d%d.TXT", YYYY, MM, DD);   // assign FileName variable with YYYYMMDD.TXT
+  }
+  else if ((MM >= 10) && (DD < 10))                   // when (number of month >= 10) AND (number of date) < 10
+  {
+    sprintf(FileName, "%d%d0%d.TXT", YYYY, MM, DD);   // assign FileName variable with YYYYMMDD.TXT
+  }
+  else                                                // when (number of month >= 10) AND (number of date) < 10
+  {
+    sprintf(FileName, "%d%d%d.TXT", YYYY, MM, DD);    // assign FileName variable with YYYYMMDD.TXT
+  }
+  
+  /* NEW FILE for SENSOR DATA LOGGING - YYYYMMDD.TXT */
+  // open the file
+  // note that only one file can be open at a time,
+  // so we have to close this one before opening another.
+
+  // open YYYYMMDD.TXT file that already exist
+  // if it isn't, then create YYYYMMDD.TXT as new file
+  myFile1 = SD.open(FileName, FILE_WRITE);
+
+  // if the file opened okay, write to it:
+  if (myFile1)                                    // file opened normally
+  {
+    // serial monitor
+    Serial.print("Writing to ");
+    Serial.print(FileName);
+    Serial.print("...");
+
+    /* title */
+    // title of the content of file
+    myFile1.println("YYYYMMDD_hhmmss_Suhu _pH   _DO   _Turb _Salnt_FLAG ");
+
+    // close the file
+    myFile1.close();
+
+    // serial monitor
+    Serial.println("done.");
+  }
+  else                                            // the file do not opened normally
+  {
+    // if the file didn't open, print an error
+    Serial.print("[NewFile] ERROR opening ");     // display on serial monitor (Arduino IDE)
+    Serial.print(FileName);
     Serial.println("!");
     procedure_LED_SystemStatus_OpenFile_Error();  // turn on the red LED for SD card
   }
@@ -1495,12 +1425,6 @@ void procedure_SDCard_DataLogging()
     /* separator */
     myFile1.print('_');                            // print separator with 'underline'
 
-    //    /* keypress */
-    //    for (int i = 1; i <= length_of_LCD_keypress_value; i++)
-    //    {
-    //      myFile1.print(LCD_keypress_value[i]);
-    //    }
-
     /* sensor data */
     myFile1.print(Rx_SensorData_Temperature);      // print temperature value to file
     myFile1.print('_');                            // print separator with 'underline'
@@ -1511,8 +1435,6 @@ void procedure_SDCard_DataLogging()
     myFile1.print(Rx_SensorData_Turbidity);        // print turbidity value to file
     myFile1.print('_');                            // print separator with 'underline'
     myFile1.print(Rx_SensorData_Salinity);         // print salinity value to file
-    myFile1.print('_');                            // print separator with 'underline'
-    myFile1.print(Rx_SensorData_Depth);            // print depth value to file
     myFile1.print('_');                            // print separator with 'underline'
     myFile1.print(SDCard_Marker);                  // print SDCard_Marker value to file
     myFile1.println("");                           // change line
@@ -1689,8 +1611,7 @@ void procedure_GSM_SendMessage_Initialize()
             Char_SensorData_pH, ConditionCheck_Flag_pH,
             Char_SensorData_DO, ConditionCheck_Flag_DO,
             Char_SensorData_Turbidity, ConditionCheck_Flag_Turbidity,
-            Char_SensorData_Salinity, ConditionCheck_Flag_Salinity,
-            Char_SensorData_Depth, ConditionCheck_Flag_Depth);
+            Char_SensorData_Salinity, ConditionCheck_Flag_Salinity);
 
     if (sms.SendSMS(GSM_PhoneNumber, GSM_SMSText))
     {
@@ -1793,8 +1714,7 @@ void procedure_GSM_SendMessage_main()
             Char_SensorData_pH, ConditionCheck_Flag_pH,
             Char_SensorData_DO, ConditionCheck_Flag_DO,
             Char_SensorData_Turbidity, ConditionCheck_Flag_Turbidity,
-            Char_SensorData_Salinity, ConditionCheck_Flag_Salinity,
-            Char_SensorData_Depth, ConditionCheck_Flag_Depth);
+            Char_SensorData_Salinity, ConditionCheck_Flag_Salinity);
 
     if (sms.SendSMS(GSM_PhoneNumber, GSM_SMSText))
     {
@@ -1845,12 +1765,6 @@ void procedure_SensorData_ConditionCheck()
   // salinity (gram per liter)
   float Salinity_Low  = 15;
   float Salinity_High = 25;
-
-  // depth (centimeter)
-  // float Depth_Low  = 120;
-  // float Depth_High = 200;
-  float Depth_Low  = 30;   // for TEST only, DELETE later
-  float Depth_High = 200;  // for TEST only, DELETE later
 
   /* Condition Check */
   // #1
@@ -1971,38 +1885,12 @@ void procedure_SensorData_ConditionCheck()
     digitalWrite(LED_SensorData_Salinity_Red  , 1);  // turn ON the RED LED
   }
 
-  // #6
-  // sensor data of DEPTH
-  if ((Value_SensorData_Depth >= Depth_Low) && (Value_SensorData_Depth <= Depth_High))
-  {
-    ConditionCheck_Flag_Depth   = 0;              // FLAG when Depth NORMAL
-    ConditionCheck_Status_Depth = "OK";           // when Depth NORMAL
-    digitalWrite(LED_SensorData_Depth_Green, 1);  // turn ON the GREEN LED
-    digitalWrite(LED_SensorData_Depth_Red  , 0);  // turn OFF the RED LED
-  }
-  // when NOT normal
-  else if (Value_SensorData_Depth < Depth_Low)
-  {
-    ConditionCheck_Flag_Depth   = 1;              // FLAG when Depth BELOW normal
-    ConditionCheck_Status_Depth = "--";           // when Depth BELOW normal
-    digitalWrite(LED_SensorData_Depth_Green, 0);  // turn OFF the GREEN LED
-    digitalWrite(LED_SensorData_Depth_Red  , 1);  // turn ON the RED LED
-  }
-  else if (Value_SensorData_Depth > Depth_High)
-  {
-    ConditionCheck_Flag_Depth   = 1;              // FLAG when Depth OVER normal
-    ConditionCheck_Status_Depth = "++";           // when Depth OVER normal
-    digitalWrite(LED_SensorData_Depth_Green, 0);  // turn OFF the GREEN LED
-    digitalWrite(LED_SensorData_Depth_Red  , 1);  // turn ON the RED LED
-  }
-
   /* Concate the FLAG */
-  sprintf(ConditionCheck_Flag_ALL, "%d%d%d%d%d%d", ConditionCheck_Flag_Temperature,
+  sprintf(ConditionCheck_Flag_ALL, "%d%d%d%d%d", ConditionCheck_Flag_Temperature,
           ConditionCheck_Flag_pH,
           ConditionCheck_Flag_DO,
           ConditionCheck_Flag_Turbidity,
-          ConditionCheck_Flag_Salinity,
-          ConditionCheck_Flag_Depth);       // concate the FLAG of each parameters
+          ConditionCheck_Flag_Salinity);       // concate the FLAG of each parameters
   Serial.print("ConditionCheck_Flag_ALL = ");                                        // display on Serial Monitor (Arduino IDE)
   Serial.println(ConditionCheck_Flag_ALL);
 }
@@ -2087,7 +1975,6 @@ void procedure_SensorData_ConvertStringToFloat()
   Value_SensorData_DO           = Rx_SensorData_DO.toFloat();           // convert DO value,          STRING to FLOAT
   Value_SensorData_Turbidity    = Rx_SensorData_Turbidity.toFloat();    // convert turbidity value,   STRING to FLOAT
   Value_SensorData_Salinity     = Rx_SensorData_Salinity.toFloat();     // convert salinity value,    STRING to FLOAT
-  Value_SensorData_Depth        = Rx_SensorData_Depth.toFloat();        // convert depth value,       STRING to FLOAT
 }
 
 void procedure_SensorData_ConvertStringToChar()
@@ -2102,7 +1989,6 @@ void procedure_SensorData_ConvertStringToChar()
   Rx_SensorData_DO.toCharArray(Char_SensorData_DO, 6);                    // convert DO value,          STRING to CHAR
   Rx_SensorData_Turbidity.toCharArray(Char_SensorData_Turbidity, 6);      // convert turbidity value,   STRING to CHAR
   Rx_SensorData_Salinity.toCharArray(Char_SensorData_Salinity, 6);        // convert salinity value,    STRING to CHAR
-  Rx_SensorData_Depth.toCharArray(Char_SensorData_Depth, 6);              // convert depth value,       STRING to CHAR
 }
 
 void procedure_TEST_DisplayConvertStringToFloat()
@@ -2125,8 +2011,6 @@ void procedure_TEST_DisplayConvertStringToFloat()
   Serial.println(Value_SensorData_Turbidity);
   Serial.print("Salinity    = ");
   Serial.println(Value_SensorData_Salinity);
-  Serial.print("Depth       = ");
-  Serial.println(Value_SensorData_Depth);
 }
 
 /*===========================================================================*/
