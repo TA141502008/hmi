@@ -1,110 +1,24 @@
-/******************************************************************************
-===============================================================================
-Project Name   : Experiment
-                 Prototipe of Final Project: Human Machine Interface (HMI)
-Revision       : 0.6
-Date Created   : August 27, 2015
-Date Revised   : February 14, 2016
-Author         : Baharuddin Aziz
-Author Mail    : mail@baha.web.id
-Company        : Department of Electrical Engineering
-                 School of Electrical Engineering and Informatics
-                 Bandung Institute of Technology (ITB)
-Summary        : 1. Initialize all component.
-                 2. Do counting every second, reset every 3600 seconds.
-                 3. Display date and clock on LCD 16x4.
-                 4. Remove old file in SD card, then create file which name
-                    is YYYYMMDD.TXT of the day.
-                 5. Receive sensor data from RMP module.
-                 6. Turn ON alarm when 1 of sensor parameter is NOT normal.
-                 7. Display the sensor data on LCD 16x4.
-                 8. Save the sensor data in SD card.
-===============================================================================
-                                Additional Info
--------------------------------------------------------------------------------
-> Microcontroller Board :
-   Arduino Mega 2560 R3 (IDE used is Arduino 1.6.4)
-> Pin Configuration (see PinConfiguration_v20151107.pdf) :
-   Keypad 4x4 :
-     Row 0    = pin 29
-     Row 1    = pin 28
-     Row 2    = pin 27
-     Row 3    = pin 26
-     Column 0 = pin 25
-     Column 1 = pin 24
-     Column 2 = pin 23
-     Column 3 = pin 22
-   LCD 16x4 :
-     1  (VSS)  = -
-     2  (VDD)  = 5V
-     3  (V0)   = GND
-     4  (RS)   = pin 12
-     5  (RW)   = GND
-     6  (E)    = pin 11
-     7  (DB0)  = -
-     8  (DB1)  = -
-     9  (DB2)  = -
-     10 (DB3)  = -
-     11 (DB4)  = pin 5
-     12 (DB5)  = pin 4
-     13 (DB6)  = pin 3
-     14 (DB7)  = pin 2
-     15 (LEDA) = 3.3V
-     16 (LEDK) = GND
-   Tiny RTC I2C Modules :
-     SQ  = -
-     DS  = -
-     SCL = pin 21 (SCL)
-     SDA = pin 20 (SDA)
-     VCC = 5V
-     GND = GND
-   SD Card Module :
-     GND  = -
-     3V3  = -
-     5V   = 5V
-     CS   = pin 53
-     MOSI = pin 51 (MOSI)
-     SCK  = pin 52 (SCK)
-     MISO = pin 50 (MISO)
-     GND  = GND
-   Receiver 433 MHz :
-     DATA1 = pin 6
-     DATA2 = -
-     VCC   = 5V
-     GND   = GND
-   LED Component Board :
-	 Rx_Green  = pin 7
-     RTC_Green = pin 8
-     RTC_Red   = pin 14
-     SD_Green  = pin 15
-     SD_Yellow = pin 16
-     SD_Red    = pin 17
-	 Ground    = GND
-   LED Sensor Board :
-     Temperature_Green = pin 30
-	 Temperature_Red   = pin 31
-	 pH_Green          = pin 32
-	 pH_Red            = pin 33
-	 DO_Green          = pin 34
-	 DO_Red            = pin 36
-	 Turbidity_Green   = pin 38
-	 Turbidity_Red     = pin 40
-	 Salinity_Green    = pin 42
-	 Salinity_Red      = pin 44
-	 Depth_Green       = pin 46
-	 Depth_Red         = pin 48
-	 Ground            = GND
-   Relay :
-     VCC    = 5V
-	 Alarm  = 18 (CH2)
-	 Kincir = 19 (CH1)
-	 GND    = GND
-   GSM Module :
-     5VR (RX) = pin 9
-     5VT (TX) = pin 10
-	 GND      = GND
-===============================================================================
-******************************************************************************/
+/*
+ * Project Name   : Experiment
+ *                  Prototipe of Final Project: Human Machine Interface (HMI)
+ * Revision       : 0.6
+ * Date Created   : August 27, 2015
+ * Date Revised   : February 14, 2016
+ * Author         : Baharuddin Aziz
+ * Author Mail    : project@baha.web.id
+ * Company        : Department of Electrical Engineering
+ *                  School of Electrical Engineering and Informatics
+ *                  Bandung Institute of Technology (ITB)
+ * Summary        : 1. Initialize all component.
+ *                  2. Do counting every second, reset every 3600 seconds.
+ *                  3. Display date and clock on LCD 16x4.
+ *                  4. Remove old file in SD card, then create file which name
+ *                     is YYYYMMDD.TXT of the day.
+ *                  5. Receive sensor data from RMP module.
+ *                  6. Turn ON alarm when 1 of sensor parameter is NOT normal.
+ *                  7. Display the sensor data on LCD 16x4.
+ *                  8. Save the sensor data in SD card.
+ */
 
 /*=======================( IMPORT NEEDED LIBRARY )===========================*/
 #include <LiquidCrystal.h>  // include the LCD library code
